@@ -12,6 +12,11 @@ class Screening
     @empty_seats = options['empty_seats'].to_i
   end
 
+  def self.delete_all
+    sql = 'DELETE FROM screenings'
+    SqlRunner.run(sql)
+  end
+
   def save()
     sql = 'INSERT INTO screenings (
       film_id,
