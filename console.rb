@@ -2,7 +2,7 @@ require( 'pry-byebug' )
 require_relative( 'models/ticket' )
 require_relative( 'models/customer' )
 require_relative( 'models/film' )
-# require_relative( 'models/screening' )
+require_relative( 'models/screening' )
 
 Ticket.delete_all()
 # Screening.delete_all()
@@ -47,16 +47,16 @@ Ticket.list_all()
 
 # film4.title = 'Blade Runner 2049'
 # film4.update()
-# screening1 = Screening.new({'film_id' => film1.id, 'start_time' => '2017-01-08 04:00:00', 'empty_seats' => 20})
-# screening1.save
-# screening2 = Screening.new({'film_id' => film2.id, 'start_time' => '2017-01-09 04:00:00', 'empty_seats' => 15})
-# screening2.save
-# screening3 = Screening.new({'film_id' => film3.id, 'start_time' => '2017-01-10 04:00:00', 'empty_seats' => 1})
-# screening3.save
-# screening4 = Screening.new({'film_id' => film4.id, 'start_time' => '2017-01-11 04:00:00', 'empty_seats' => 20})
-# screening4.save
-# screening5 = Screening.new({'film_id' => film4.id, 'start_time' => '2017-01-12 04:00:00', 'empty_seats' => 10})
-# screening5.save
+screening1 = Screening.new({'film_id' => film1.id, 'start_time' => '2017-01-08 04:00:00', 'empty_seats' => 20})
+screening1.save
+screening2 = Screening.new({'film_id' => film2.id, 'start_time' => '2017-01-09 04:00:00', 'empty_seats' => 15})
+screening2.save
+screening3 = Screening.new({'film_id' => film3.id, 'start_time' => '2017-01-10 04:00:00', 'empty_seats' => 1})
+screening3.save
+screening4 = Screening.new({'film_id' => film4.id, 'start_time' => '2017-01-11 04:00:00', 'empty_seats' => 20})
+screening4.save
+screening5 = Screening.new({'film_id' => film4.id, 'start_time' => '2017-01-12 04:00:00', 'empty_seats' => 10})
+screening5.save
 #
 # customer1.buy_ticket(screening2)
 # customer2.buy_ticket(screening2)
