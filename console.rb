@@ -18,6 +18,9 @@ customer3.save()
 customer4 = Customer.new({'name' => 'Zsolt', 'funds' => 50.00})
 customer4.save()
 
+customer1.name = 'Bob'
+customer1.update()
+
 Customer.list_all()
 #
 # film1 = Film.new({'title' => 'Memento', 'price' => 10.00 })
