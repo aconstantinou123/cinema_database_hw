@@ -29,13 +29,15 @@ class Customer
     def save()
       sql = 'INSERT INTO customers (
         name,
-        funds
+        funds,
+        tickets_bought
       ) VALUES (
         $1,
-        $2
+        $2,
+        $3
         )
         RETURNING *'
-      values = [@name, @funds]
+      values = [@name, @funds, @tickets_bought]
       @id = SqlRunner.run(sql, values)[0]['id'].to_i
     end
 
