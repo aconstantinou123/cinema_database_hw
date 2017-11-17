@@ -1,10 +1,10 @@
 require( 'pry-byebug' )
-# require_relative( 'models/ticket' )
+require_relative( 'models/ticket' )
 require_relative( 'models/customer' )
 require_relative( 'models/film' )
 # require_relative( 'models/screening' )
 
-# Ticket.delete_all()
+Ticket.delete_all()
 # Screening.delete_all()
 Customer.delete_all()
 Film.delete_all()
@@ -32,7 +32,10 @@ film3.save
 film4 = Film.new({'title' => 'Sausage Party', 'price' => 12.00})
 film4.save
 
-pp Film.list_all()
+# pp Film.list_all()
+
+ticket1 = Ticket.new({'customer_id' => customer1.id, 'film_id' => film1.id})
+ticket1.save()
 
 # film4.title = 'Blade Runner 2049'
 # film4.update()
