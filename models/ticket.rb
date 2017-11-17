@@ -35,4 +35,5 @@ class Ticket
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
+
 end

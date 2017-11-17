@@ -63,6 +63,15 @@ class Customer
       return films.map{|film| Film.new(film)}
     end
 
+    def deduct_money(screening)
+      sql = 'SELECT films.price
+            FROM films
+            WHERE films.id = $1'
+      values = [screening.film_id.to_i]
+      film_price = SqlRunner.run(sql, values)[0]['price'].to_i
+      return @funds -= film_price
+    end
+
     def buy_ticket(screening)
       sql = 'INSERT INTO tickets (
       customer_id,
@@ -73,7 +82,12 @@ class Customer
         )'
       values = [@id, screening.film_id.to_i]
       SqlRunner.run(sql, values)
+      deduct_money(screening)
+      update()
     end
+
+
+
 
 
 
