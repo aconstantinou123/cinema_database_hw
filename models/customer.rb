@@ -1,4 +1,6 @@
 require_relative("../db/sql_runner")
+require_relative("./film")
+require_relative("./ticket")
 
 class Customer
 
@@ -60,5 +62,7 @@ class Customer
       films = SqlRunner.run(sql, values)
       return films.map{|film| Film.new(film)}
     end
+
+
 
 end
