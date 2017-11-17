@@ -57,6 +57,8 @@ screening4 = Screening.new({'film_id' => film4.id, 'start_time' => '2017-01-11 0
 screening4.save
 screening5 = Screening.new({'film_id' => film4.id, 'start_time' => '2017-01-12 04:00:00', 'empty_seats' => 10})
 screening5.save
+
+Screening.list_all()
 #
 # customer1.buy_ticket(screening2)
 # customer2.buy_ticket(screening2)
