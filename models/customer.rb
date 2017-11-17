@@ -63,6 +63,18 @@ class Customer
       return films.map{|film| Film.new(film)}
     end
 
+    def buy_ticket(screening)
+      sql = 'INSERT INTO tickets (
+      customer_id,
+      film_id
+      ) VALUES (
+        $1,
+        $2
+        )'
+      values = [@id, screening.film_id.to_i]
+      SqlRunner.run(sql, values)
+    end
+
 
 
 end
