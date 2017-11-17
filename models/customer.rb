@@ -92,6 +92,13 @@ class Customer
       update()
     end
 
+    def check_tickets_bought
+      sql = 'SELECT * FROM tickets
+            WHERE customer_id = $1'
+      values = [@id]
+      return result = SqlRunner.run(sql, values).count
+    end
+
 
 
 
