@@ -64,12 +64,12 @@ customer1.buy_ticket(screening2)
 customer2.buy_ticket(screening2)
 customer3.buy_ticket(screening2)
 customer4.buy_ticket(screening2)
-#
-# customer1.buy_ticket(screening3)
-#
-# customer1.buy_ticket(screening4)
-# customer2.buy_ticket(screening4)
-# customer3.buy_ticket(screening5)
+
+customer1.buy_ticket(screening3)
+
+customer1.buy_ticket(screening4)
+customer2.buy_ticket(screening4)
+customer3.buy_ticket(screening5)
 
 # Screening.most_popular should return screening2
 binding.pry

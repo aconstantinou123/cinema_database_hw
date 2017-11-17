@@ -5,12 +5,13 @@ require_relative("./ticket")
 class Customer
 
   attr_reader :id
-  attr_accessor :name, :funds
+  attr_accessor :name, :funds, :tickets_bought
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @name = options['name']
     @funds = options['funds'].to_i
+    @tickets_bought = options['tickets_bought'].to_i
 
   end
 
@@ -41,14 +42,16 @@ class Customer
     def update()
       sql = 'UPDATE customers SET (
        name,
-       funds
+       funds,
+       tickets_bought
        ) = (
           $1,
-          $2
+          $2,
+          $3
             )
-        WHERE id = $3
+        WHERE id = $4
         '
-        values = [@name,@funds, @id]
+        values = [@name,@funds,@tickets_bought, @id]
         SqlRunner.run(sql, values)
     end
 
@@ -83,6 +86,7 @@ class Customer
       values = [@id, screening.film_id.to_i]
       SqlRunner.run(sql, values)
       deduct_money(screening)
+      @tickets_bought += 1
       update()
     end
 
