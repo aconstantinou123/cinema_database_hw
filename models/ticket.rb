@@ -16,6 +16,12 @@ class Ticket
     SqlRunner.run(sql)
   end
 
+  def self.list_all()
+    sql = 'SELECT * FROM tickets'
+    tickets = SqlRunner.run(sql)
+    return tickets.map{|ticket| Ticket.new(ticket)}
+  end
+
   def save()
     sql = 'INSERT INTO tickets (
             customer_id,
