@@ -68,6 +68,19 @@ class Customer
       return films.map{|film| Film.new(film)}
     end
 
+    def check_seats(screening)
+      sql = 'SELECT empty_seats
+              FROM screenings
+              WHERE screenings.id = $1'
+      values = [screening.id.to_i]
+      result = SqlRunner.run(sql, values)[0]['empty_seats'].to_i
+        if result >= 1
+          return true
+        else
+          return false
+        end
+    end
+
     def deduct_money(screening)
       sql = 'SELECT films.price
             FROM films
@@ -78,18 +91,23 @@ class Customer
     end
 
     def buy_ticket(screening)
-      sql = 'INSERT INTO tickets (
-      customer_id,
-      film_id
-      ) VALUES (
-        $1,
-        $2
-        )'
-      values = [@id, screening.film_id.to_i]
-      SqlRunner.run(sql, values)
-      deduct_money(screening)
-      @tickets_bought += 1
-      update()
+      if check_seats(screening) == true
+        sql = 'INSERT INTO tickets (
+        customer_id,
+        film_id
+        ) VALUES (
+          $1,
+          $2
+          )'
+        values = [@id, screening.film_id.to_i]
+        SqlRunner.run(sql, values)
+        deduct_money(screening)
+        screening.empty_seats -= 1
+        @tickets_bought += 1
+        update()
+      else
+        return "No tickets available"
+      end
     end
 
     def check_tickets_bought

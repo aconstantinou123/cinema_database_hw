@@ -57,6 +57,8 @@ screening4 = Screening.new({'film_id' => film4.id, 'start_time' => '2017-01-11 0
 screening4.save
 screening5 = Screening.new({'film_id' => film4.id, 'start_time' => '2017-01-12 04:00:00', 'empty_seats' => 10})
 screening5.save
+screening6 = Screening.new({'film_id' => film2.id, 'start_time' => '2017-01-12 04:00:00', 'empty_seats' => 0})
+screening6.save
 
 Screening.list_all()
 #
@@ -70,6 +72,7 @@ customer1.buy_ticket(screening3)
 customer1.buy_ticket(screening4)
 customer2.buy_ticket(screening4)
 customer3.buy_ticket(screening5)
+customer1.buy_ticket(screening6)
 
 Screening.most_popular
 binding.pry
