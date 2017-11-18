@@ -103,6 +103,7 @@ class Customer
         SqlRunner.run(sql, values)
         deduct_money(screening)
         screening.empty_seats -= 1
+        screening.update()
         @tickets_bought += 1
         update()
       else
