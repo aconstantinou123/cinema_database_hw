@@ -20,7 +20,18 @@ class Screening
           WHERE films.id = $1"
     values = [@film_id]
     film_title = SqlRunner.run(sql, values)[0]['title'].to_s
-    return "#{film_title}    #{@start_time}"
+    return "#{film_title} #{@start_time}"
+  end
+
+  def display_title
+    sql = "SELECT films.title
+          FROM films
+          INNER JOIN screenings
+          ON films.id = screenings.film_id
+          WHERE films.id = $1"
+    values = [@film_id]
+    film_title = SqlRunner.run(sql, values)[0]['title'].to_s
+    return "#{film_title}"
   end
 
   def self.delete_all
@@ -74,6 +85,15 @@ class Screening
           LIMIT 1 OFFSET 0'
     most_popular = SqlRunner.run(sql)
     return most_popular.map{|screening| Screening.new(screening)}
+  end
+
+  def self.find(id)
+    sql = "SELECT * FROM screenings
+          WHERE id = $1"
+    values = [id]
+    screening = SqlRunner.run(sql,values)
+    result = Screening.new(screening.first)
+    return result
   end
 
 

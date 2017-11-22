@@ -10,3 +10,8 @@ get '/cinema_screenings' do
   @screenings = Screening.list_all()
   erb(:screenings)
 end
+
+get '/cinema_screenings/:id' do
+  @screening = Screening.find(params[:id])
+  erb(:show)
+end

@@ -1,2 +1,10 @@
 <h2>Here are the current listings for the cinema: <h2>
-  <% @screenings
+  <hr>
+  <div>
+    <p>
+      <% @screenings.each do |screening| %>
+      <p><a href="/cinema_screenings/<%= screening.id %>"><%= screening.display_title_and_time %></a></p>
+      <hr>
+    </p>
+  </div>
+  <%end%>
