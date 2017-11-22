@@ -12,6 +12,17 @@ class Screening
     @empty_seats = options['empty_seats'].to_i
   end
 
+  def display_title_and_time
+    sql = "SELECT films.title
+          FROM films
+          INNER JOIN screenings
+          ON films.id = screenings.film_id
+          WHERE films.id = $1"
+    values = [@film_id]
+    film_title = SqlRunner.run(sql, values)[0]['title'].to_s
+    return "#{film_title}    #{@start_time}"
+  end
+
   def self.delete_all
     sql = 'DELETE FROM screenings'
     SqlRunner.run(sql)
